@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mazidpic | استودیو خلاق تولید محتوا</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0e10;
+    --bg-soft:#16161a;
+    --card:#1b1b20;
+    --line:rgba(255,255,255,.08);
+    --gold:#c8a86b;
+    --gold-soft:#e0c690;
+    --text:#ececec;
+    --muted:#9b9b9b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Vazirmatn',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.9;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed;top:0;right:0;left:0;z-index:100;
+    background:rgba(14,14,16,.85);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:1200px;margin:auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 24px;
+  }
+  .logo{
+    font-size:22px;font-weight:800;letter-spacing:1px;
+    color:var(--gold);
+  }
+  .logo span{color:var(--text)}
+  .menu{display:flex;gap:8px}
+  .menu a{
+    padding:8px 16px;border-radius:30px;
+    font-size:14px;font-weight:500;color:var(--muted);
+    transition:.3s;cursor:pointer;
+  }
+  .menu a:hover{color:var(--text)}
+  .menu a.active{color:var(--bg);background:var(--gold)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+  .burger span{width:26px;height:2px;background:var(--gold);border-radius:2px}
+
+  /* ---------- Layout ---------- */
+  main{max-width:1200px;margin:auto;padding:120px 24px 80px}
+  .page{display:none;animation:fade .5s ease}
+  .page.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+  section{margin-bottom:100px}
+
+  h1,h2,h3{font-weight:700;line-height:1.5}
+  h1{font-size:clamp(34px,6vw,64px);letter-spacing:-.5px}
+  h2{font-size:clamp(24px,4vw,38px);margin-bottom:24px}
+  h3{font-size:20px;color:var(--gold-soft);margin-bottom:10px}
+  p{color:var(--muted);font-size:16px}
+  .lead{font-size:18px;color:#cfcfcf;max-width:680px}
+
+  .gold{color:var(--gold)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    text-align:center;
+    padding:60px 0 40px;
+    position:relative;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:-1;
+    background:radial-gradient(circle at 50% 0%,rgba(200,168,107,.12),transparent 60%);
+  }
+  .hero h1{margin-bottom:20px}
+  .hero p{max-width:640px;margin:0 auto 36px;font-size:18px;color:#c9c9c9}
+  .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{
+    padding:14px 34px;border-radius:40px;font-weight:600;font-size:15px;
+    border:1px solid var(--gold);transition:.35s;cursor:pointer;
+    display:inline-block;
+  }
+  .btn-fill{background:var(--gold);color:var(--bg)}
+  .btn-fill:hover{background:var(--gold-soft);transform:translateY(-2px)}
+  .btn-out{color:var(--gold);background:transparent}
+  .btn-out:hover{background:rgba(200,168,107,.1)}
+
+  /* ---------- Grid Cards ---------- */
+  .grid{display:grid;gap:22px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .g4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:30px 26px;
+    transition:.35s;
+  }
+  .card:hover{
+    border-color:rgba(200,168,107,.5);
+    transform:translateY(-6px);
+    background:#202027;
+  }
+  .card p{font-size:15px}
+
+  .num{
+    font-size:14px;font-weight:700;color:var(--gold);
+    letter-spacing:2px;display:block;margin-bottom:14px;
+  }
+
+  /* ---------- Feature band ---------- */
+  .band{
+    background:linear-gradient(135deg,#1a1a1f,#111);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:60px 40px;
+    text-align:center;
+  }
+  .band h2{margin-bottom:16px}
+  .band .big{
+    font-size:clamp(26px,5vw,46px);
+    font-weight:800;color:var(--gold);
+    display:block;margin-top:14px;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{
+    display:grid;grid-template-columns:1fr 1.2fr;gap:44px;
+  }
+  .info-row{
+    display:flex;gap:14px;align-items:flex-start;
+    padding:18px 0;border-bottom:1px solid var(--line);
+  }
+  .info-row:last-child{border:none}
+  .info-icon{font-size:20px;color:var(--gold);min-width:28px}
+
+  form{display:flex;flex-direction:column;gap:16px}
+  input,textarea,select{
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px 18px;
+    color:var(--text);
+    font-family:inherit;font-size:15px;
+    outline:none;transition:.3s;
+    width:100%;
+  }
+  input:focus,textarea:focus,select:focus{
+    border-color:var(--gold);
+    background:#1e1e24;
+  }
+  textarea{resize:vertical;min-height:120px}
+  label{font-size:14px;color:var(--muted);margin-bottom:6px;display:block}
+  .msg{
+    padding:14px;border-radius:12px;text-align:center;
+    background:rgba(200,168,107,.12);color:var(--gold);
+    border:1px solid rgba(200,168,107,.35);
+    display:none;font-size:14px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:36px 24px;text-align:center;
+    color:var(--muted);font-size:14px;
+  }
+  footer .logo{font-size:18px;margin-bottom:8px}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:800px){
+    .menu{
+      position:fixed;top:68px;right:0;left:0;
+      background:var(--bg);
+      flex-direction:column;
+      padding:20px;
+      gap:6px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-150%);
+      transition:.4s;
+    }
+    .menu.open{transform:translateY(0)}
+    .menu a{text-align:center;padding:12px}
+    .burger{display:flex}
+    .contact-grid{grid-template-columns:1fr;gap:30px}
+    main{padding-top:100px}
+    section{margin-bottom:70px}
+    .band{padding:40px 22px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">Mazid<span>pic</span></div>
+    <nav class="menu" id="menu">
+      <a data-nav="home" class="active">صفحه اصلی</a>
+      <a data-nav="services">معرفی خدمات</a>
+      <a data-nav="about">درباره ما</a>
+      <a data-nav="contact">تماس با ما</a>
+    </nav>
+    <div class="burger" id="burger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= HOME ================= -->
+  <div class="page active" id="home">
+
+    <section class="hero">
+      <h1>ایده‌ات را بساز.<br><span class="gold">ما فضای ساختنش را آماده کرده‌ایم.</span></h1>
+      <p>
+        <b>Mazidpic</b> یک استودیوی حرفه‌ای تولید محتواست؛ با فضاهای متنوع، دکورهای آماده،
+        وایت‌باکس، تجهیزات به‌روز و تیمی از متخصصان عکاسی، فیلم‌برداری و پس‌تولید.
+        از ایده تا خروجی نهایی، هر چیزی که برای خلق یک محتوای حرفه‌ای نیاز داری، اینجاست.
+      </p>
+      <div class="btns">
+        <a class="btn btn-fill" data-nav="contact">رزرو استودیو</a>
+        <a class="btn btn-out" data-nav="services">مشاهده فضاها و خدمات</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>یک استودیو، برای ایده‌های مختلف</h2>
+      <p class="lead">
+        هر محتوا فضای خودش را می‌خواهد. در Mazidpic مجموعه‌ای از فضاها و دکورهای متنوع
+        در اختیار شماست تا متناسب با ایده، برند و نوع محتوای خود، فضای مناسب را انتخاب کنید.
+        از عکاسی محصول و تبلیغات تا تولید ریلز، ویدئوهای آموزشی، کمپین‌های تبلیغاتی و
+        محتوای شبکه‌های اجتماعی.
+      </p>
+    </section>
+
+    <section>
+      <h2>امکانات Mazidpic</h2>
+      <div class="grid g2">
+        <div class="card">
+          <h3>دکورهای متنوع</h3>
+          <p>فضاهای آماده و قابل استفاده برای سبک‌های مختلف تولید محتوا.</p>
+        </div>
+        <div class="card">
+          <h3>White Box / Infinity</h3>
+          <p>فضایی یکپارچه و مینیمال برای عکاسی و فیلم‌برداری حرفه‌ای، با آزادی عمل بالا در نورپردازی و طراحی صحنه.</p>
+        </div>
+        <div class="card">
+          <h3>تجهیزات به‌روز</h3>
+          <p>تجهیزات حرفه‌ای عکاسی، فیلم‌برداری و نورپردازی برای رسیدن به کیفیتی که محتوای شما شایسته آن است.</p>
+        </div>
+        <div class="card">
+          <h3>تیم متخصص</h3>
+          <p>اگر ترجیح می‌دهید همه چیز را خودتان انجام ندهید، عکاس، فیلم‌بردار، اپراتور تجهیزات، ادیتور و تیم طراحی صحنه در کنار شما هستند.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>اینجا چه چیزی می‌توانی بسازی؟</h2>
+      <div class="grid g3">
+        <div class="card">
+          <h3>محتوای شبکه‌های اجتماعی</h3>
+          <p>ریلز، ویدئوهای کوتاه، محتوای تبلیغاتی و برندینگ.</p>
+        </div>
+        <div class="card">
+          <h3>عکاسی محصول</h3>
+          <p>تصاویر حرفه‌ای برای فروشگاه آنلاین، تبلیغات و کمپین‌ها.</p>
+        </div>
+        <div class="card">
+          <h3>ویدئوهای تبلیغاتی</h3>
+          <p>فضایی مناسب برای تولید تیزر و محتوای ویدئویی برندها.</p>
+        </div>
+        <div class="card">
+          <h3>محتوای آموزشی</h3>
+          <p>تولید دوره، ویدئوهای آموزشی، معرفی خدمات و محتوای تخصصی.</p>
+        </div>
+        <div class="card">
+          <h3>محتوای شخصی و برند شخصی</h3>
+          <p>پرتره، ویدئو و محتوای حرفه‌ای برای افراد و متخصصان.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <h2>فقط فضا نیست؛ ابزار خلق محتواست.</h2>
+      <p class="lead" style="margin:0 auto">
+        لازم نیست برای هر پروژه دنبال لوکیشن، دکور، تجهیزات و نیروی متخصص بگردید.
+        Mazidpic همه این‌ها را در یک فضای حرفه‌ای کنار هم قرار داده تا شما روی
+        چیزی که مهم‌تر است تمرکز کنید:
+      </p>
+      <span class="big">ایده و محتوایتان.</span>
+      <div class="btns" style="margin-top:32px">
+        <a class="btn btn-fill" data-nav="contact">رزرو استودیو</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================= SERVICES ================= -->
+  <div class="page" id="services">
+
+    <section class="hero">
+      <h1>فضای مناسب را انتخاب کن.<br><span class="gold">تولید را شروع کن.</span></h1>
+      <p>
+        در Mazidpic می‌توانید فضای مورد نیازتان را برای تولید محتوا به‌صورت مستقل اجاره کنید
+        یا از خدمات تخصصی تیم ما برای اجرای کامل پروژه استفاده کنید.
+      </p>
+    </section>
+
+    <section>
+      <div class="grid g2">
+
+        <div class="card">
+          <span class="num">01</span>
+          <h3>اجاره استودیو</h3>
+          <p>فضای حرفه‌ای و آماده برای عکاسی و فیلم‌برداری.</p>
+          <p style="margin-top:12px;color:#bbb">
+            مناسب برای: تولید محتوای شبکه‌های اجتماعی، عکاسی و فیلم‌برداری تبلیغاتی،
+            محتوای برندها، ویدئوهای آموزشی، عکاسی محصول و پرسونال برندینگ.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="num">02</span>
+          <h3>White Box / Infinity</h3>
+          <p>
+            یک فضای تمیز، مینیمال و یکپارچه برای پروژه‌هایی که به پس‌زمینه‌ای بدون مرز
+            و کنترل کامل روی نور نیاز دارند.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="num">03</span>
+          <h3>دکور و طراحی صحنه</h3>
+          <p>
+            برای هر ایده، یک فضای مناسب. دکورهای متنوع Mazidpic این امکان را به شما می‌دهند
+            که بدون ساخت یک لوکیشن از صفر، فضای مورد نیاز پروژه خود را داشته باشید.
+            در صورت نیاز، طراحی و آماده‌سازی صحنه نیز توسط تیم ما انجام می‌شود.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="num">04</span>
+          <h3>عکاسی</h3>
+          <p>
+            اگر ترجیح می‌دهید اجرای پروژه را به یک متخصص بسپارید، تیم عکاسی Mazidpic
+            در کنار شماست. از عکاسی محصول و تبلیغاتی تا پرتره و محتوای شبکه‌های اجتماعی.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="num">05</span>
+          <h3>فیلم‌برداری</h3>
+          <p>
+            تولید ویدئو با تجهیزات حرفه‌ای و فضای مناسب برای اجرای ایده‌های مختلف.
+            از ویدئوهای کوتاه شبکه‌های اجتماعی تا پروژه‌های تبلیغاتی و محتوای برند.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="num">06</span>
+          <h3>اپراتور تجهیزات</h3>
+          <p>
+            اگر تجهیزات مورد نیازتان را می‌شناسید اما ترجیح می‌دهید اجرای فنی پروژه را
+            یک متخصص انجام دهد، می‌توانید از خدمات اپراتور تجهیزات استفاده کنید.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="num">07</span>
+          <h3>تدوین و ادیت</h3>
+          <p>
+            پروژه با پایان فیلم‌برداری تمام نمی‌شود. تیم تدوین و ادیت Mazidpic می‌تواند
+            فایل‌های خام شما را به خروجی نهایی آماده انتشار تبدیل کند؛ از تدوین ویدئو
+            تا اصلاح رنگ و آماده‌سازی خروجی متناسب با پلتفرم انتشار.
+          </p>
+        </div>
+
+        <div class="card">
+          <span class="num">08</span>
+          <h3>اجرای کامل پروژه</h3>
+          <p>
+            اگر نمی‌خواهید درگیر هماهنگی جزئیات تولید شوید، می‌توانید اجرای پروژه را
+            به ما بسپارید.
+          </p>
+          <p style="margin-top:12px;color:var(--gold-soft);font-weight:600">
+            ایده → طراحی صحنه → تولید → تدوین → خروجی نهایی
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="band">
+      <h2>پروژه‌ات را به ما بسپار.</h2>
+      <p class="lead" style="margin:0 auto">
+        ما مسیر را برای شما مدیریت می‌کنیم؛ از ایده تا خروجی نهایی.
+      </p>
+      <div class="btns" style="margin-top:28px">
+        <a class="btn btn-fill" data-nav="contact">برای پروژه خود با ما صحبت کنید</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================= ABOUT ================= -->
+  <div class="page" id="about">
+
+    <section class="hero">
+      <h1>Mazidpic <span class="gold">چیست؟</span></h1>
+      <p>
+        ما فکر می‌کنیم تولید محتوای خوب نباید با پیدا کردن لوکیشن، جابه‌جایی تجهیزات
+        و هماهنگی چندین نفر شروع شود.
+      </p>
+    </section>
+
+    <section>
+      <p class="lead" style="margin-bottom:20px">
+        <b class="gold">Mazidpic برای ساده‌تر کردن همین مسیر شکل گرفته است.</b>
+      </p>
+      <p class="lead">
+        یک فضای حرفه‌ای برای کسانی که می‌خواهند ایده‌هایشان را به تصویر و ویدئو تبدیل کنند؛
+        از تولیدکنندگان محتوای شبکه‌های اجتماعی و برندها گرفته تا عکاسان، فیلم‌برداران
+        و کسب‌وکارهایی که برای ارتباط بهتر با مخاطبشان به محتوای حرفه‌ای نیاز دارند.
+      </p>
+      <p class="lead" style="margin-top:18px">
+        ما تلاش کرده‌ایم فضای Mazidpic را طوری طراحی کنیم که هم برای یک پروژه ساده و سریع
+        مناسب باشد و هم بتواند میزبان پروژه‌های حرفه‌ای و بزرگ‌تر باشد.
+      </p>
+    </section>
+
+    <section>
+      <h2>نگاه ما</h2>
+      <div class="band" style="text-align:right">
+        <h3 style="font-size:24px;color:var(--gold)">فضا فقط یک پس‌زمینه نیست.</h3>
+        <p style="margin-top:16px">
+          نور، دکور، تجهیزات و حتی جزئیات یک فضا می‌توانند روی کیفیت یک محتوا تأثیر بگذارند.
+          برای همین در Mazidpic تلاش کرده‌ایم محیطی ایجاد کنیم که <b>امکان خلق کردن</b> را
+          بیشتر کند؛ نه اینکه محدودش کند.
+        </p>
+        <p style="margin-top:12px">
+          فضایی حرفه‌ای، تمیز و منعطف، با امکاناتی که به شما اجازه می‌دهد روی ایده‌تان تمرکز کنید.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>برای چه کسانی؟</h2>
+      <div class="grid g4">
+        <div class="card">
+          <h3>Content Creators</h3>
+          <p>برای تولید محتوای حرفه‌ای و منظم.</p>
+        </div>
+        <div class="card">
+          <h3>برندها و کسب‌وکارها</h3>
+          <p>برای کمپین، تبلیغات و تولید محتوای برند.</p>
+        </div>
+        <div class="card">
+          <h3>عکاسان و فیلم‌برداران</h3>
+          <p>برای دسترسی به فضای حرفه‌ای و تجهیزات مورد نیاز.</p>
+        </div>
+        <div class="card">
+          <h3>برند شخصی</h3>
+          <p>برای تولید محتوای آموزشی، تخصصی و پرسونال برندینگ.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================= CONTACT ================= -->
+  <div class="page" id="contact">
+
+    <section class="hero">
+      <h1>آماده‌ایم درباره <span class="gold">پروژه‌ات</span> صحبت کنیم.</h1>
+      <p>
+        چه برای چند ساعت به یک فضای حرفه‌ای نیاز داشته باشید و چه بخواهید اجرای کامل
+        یک پروژه را به ما بسپارید، با ما در ارتباط باشید.
+      </p>
+    </section>
+
+    <section class="contact-grid">
+
+      <div>
+        <h2>Mazidpic</h2>
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <div style="font-weight:600">آدرس</div>
+            <div style="color:var(--muted)">اراک، خیابان نواب، ساختمان مارال</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div>
+            <div style="font-weight:600">تلفن تماس</div>
+            <div style="color:var(--muted);direction:ltr;text-align:right">۰۹۱۲۸۴۹۵۴۳۱</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🕐</div>
+          <div>
+            <div style="font-weight:600">ساعات کاری</div>
+            <div style="color:var(--muted)">در حال به‌روزرسانی</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📷</div>
+          <div>
+            <div style="font-weight:600">اینستاگرام</div>
+            <div style="color:var(--gold)">Mazidpic@</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2>فرم تماس</h2>
+        <form id="contactForm">
+          <div>
+            <label>نام و نام خانوادگی</label>
+            <input type="text" required placeholder="نام کامل شما">
+          </div>
+          <div>
+            <label>شماره تماس</label>
+            <input type="tel" required placeholder="۰۹۱۲...">
+          </div>
+          <div>
+            <label>نوع پروژه</label>
+            <select required>
+              <option value="">انتخاب کنید</option>
+              <option>عکاسی محصول</option>
+              <option>فیلم‌برداری تبلیغاتی</option>
+              <option>محتوای شبکه‌های اجتماعی</option>
+              <option>پرتره و برند شخصی</option>
+              <option>محتوای آموزشی</option>
+              <option>اجرای کامل پروژه</option>
+              <option>سایر</option>
+            </select>
+          </div>
+          <div>
+            <label>تاریخ موردنظر</label>
+            <input type="text" placeholder="مثلاً ۲۰ آبان">
+          </div>
+          <div>
+            <label>توضیحات پروژه</label>
+            <textarea placeholder="کمی از ایده، نیاز و انتظارات خود بنویسید..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-fill" style="border:none;font-family:inherit">
+            ارسال درخواست
+          </button>
+          <div class="msg" id="msg">✅ درخواست شما ثبت شد. به‌زودی با شما تماس می‌گیریم.</div>
+        </form>
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<footer>
+  <div class="logo">Mazid<span style="color:var(--text)">pic</span></div>
+  <p>© ۲۰۲۵ Mazidpic — استودیو خلاق تولید محتوا</p>
+</footer>
+
+<script>
+  /* ---------- Navigation ---------- */
+  const pages = document.querySelectorAll('.page');
+  const navLinks = document.querySelectorAll('[data-nav]');
+  const menu = document.getElementById('menu');
+
+  function goTo(id){
+    pages.forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+
+    navLinks.forEach(l => l.classList.remove('active'));
+    document.querySelectorAll(`.menu a[data-nav="${id}"]`)
+      .forEach(l => l.classList.add('active'));
+
+    menu.classList.remove('open');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => goTo(link.dataset.nav));
+  });
+
+  /* ---------- Burger ---------- */
+  document.getElementById('burger').addEventListener('click', () => {
+    menu.classList.toggle('open');
+  });
+
+  /* ---------- Contact Form ---------- */
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const msg = document.getElementById('msg');
+    msg.style.display = 'block';
+    this.reset();
+    setTimeout(() => msg.style.display = 'none', 5000);
+  });
+</script>
+
+</body>
+</html>
